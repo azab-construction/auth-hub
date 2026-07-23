@@ -39,7 +39,25 @@ const AuthLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [phoneLoading, setPhoneLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [azureLoading, setAzureLoading] = useState(false);
   const Arrow = dir === "rtl" ? ArrowRight : ArrowLeft;
+
+  const handleAzureLogin = async () => {
+    setAzureLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "azure",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+          scopes: "email openid profile",
+        },
+      });
+      if (error) throw error;
+    } catch (err: any) {
+      toast.error(err.message || "Azure login failed");
+      setAzureLoading(false);
+    }
+  };
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();

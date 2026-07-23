@@ -10,6 +10,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
+import logoDark from "@/assets/az-s.png.asset.json";
+import logoLight from "@/assets/az-w.png.asset.json";
 
 const particles = Array.from({ length: 12 }, (_, i) => ({
   x: `${Math.random() * 100}%`,
@@ -150,9 +152,12 @@ const AuthLoginPage = () => {
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="w-28 h-28 rounded-3xl bg-primary/15 backdrop-blur-md flex items-center justify-center mx-auto mb-10 border border-primary/25 shadow-2xl"
+            className="relative w-40 h-40 mx-auto mb-10"
           >
-            <Shield className="w-14 h-14 text-primary" />
+            <div className="absolute inset-0 rounded-[2rem] bg-primary/20 blur-2xl animate-glow-pulse" />
+            <div className="relative w-full h-full rounded-[2rem] bg-white/[0.06] backdrop-blur-md border border-white/[0.12] shadow-2xl flex items-center justify-center p-5">
+              <img src={logoLight.url} alt="Alazab" className="w-full h-full object-contain drop-shadow-2xl" />
+            </div>
           </motion.div>
           <h2 className="font-heading text-4xl font-extrabold mb-5 leading-tight">{t("otp.login.title")}</h2>
           <p className="text-white/45 text-lg leading-relaxed mb-10">{t("otp.login.subtitle")}</p>
@@ -189,12 +194,14 @@ const AuthLoginPage = () => {
             {/* Logo */}
             <div className="text-center">
               <motion.div
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                className="w-18 h-18 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center mx-auto mb-5 shadow-sm"
+                className="relative w-20 h-20 mx-auto mb-5"
               >
-                <span className="font-heading text-4xl font-extrabold text-primary">Auth Alazab</span>
+                <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl" />
+                <img src={logoDark.url} alt="Alazab" className="relative w-20 h-20 object-contain dark:hidden drop-shadow-md" />
+                <img src={logoLight.url} alt="Alazab" className="relative w-20 h-20 object-contain hidden dark:block drop-shadow-md" />
               </motion.div>
               <h1 className="font-heading text-2xl font-extrabold text-foreground">{t("otp.login.title")}</h1>
               <p className="text-muted-foreground text-sm mt-2">{t("otp.login.subtitle")}</p>

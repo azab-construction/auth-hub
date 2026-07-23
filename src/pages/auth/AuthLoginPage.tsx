@@ -201,7 +201,8 @@ const AuthLoginPage = () => {
             </div>
 
             {/* Social row */}
-            <div className="grid grid-cols-3 gap-2.5">
+            {/* Social row */}
+            <div className="grid grid-cols-4 gap-2.5">
               <Button
                 type="button"
                 variant="outline"

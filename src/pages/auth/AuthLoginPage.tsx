@@ -39,7 +39,25 @@ const AuthLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [phoneLoading, setPhoneLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [azureLoading, setAzureLoading] = useState(false);
   const Arrow = dir === "rtl" ? ArrowRight : ArrowLeft;
+
+  const handleAzureLogin = async () => {
+    setAzureLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "azure",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+          scopes: "email openid profile",
+        },
+      });
+      if (error) throw error;
+    } catch (err: any) {
+      toast.error(err.message || "Azure login failed");
+      setAzureLoading(false);
+    }
+  };
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -183,7 +201,7 @@ const AuthLoginPage = () => {
             </div>
 
             {/* Social row */}
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-4 gap-2.5">
               <Button
                 type="button"
                 variant="outline"
@@ -206,14 +224,30 @@ const AuthLoginPage = () => {
               <Button
                 type="button"
                 variant="outline"
+                onClick={handleAzureLogin}
+                disabled={azureLoading}
+                className="h-12 rounded-xl border-2 hover:border-primary/30 hover:bg-muted/50 transition-all"
+                title="Microsoft Azure"
+              >
+                {azureLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <svg className="w-5 h-5" viewBox="0 0 23 23">
+                    <path fill="#f35325" d="M1 1h10v10H1z"/>
+                    <path fill="#81bc06" d="M12 1h10v10H12z"/>
+                    <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+                    <path fill="#ffba08" d="M12 12h10v10H12z"/>
+                  </svg>
+                )}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
                 onClick={handleDisabledProvider}
                 className="relative h-12 rounded-xl border-2 opacity-60 hover:opacity-80 cursor-not-allowed"
                 title={`Facebook - ${t("auth.comingSoon")}`}
               >
                 <FacebookIcon />
-                <span className="absolute -top-2 -end-1 text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-amber-500 text-white">
-                  {t("auth.comingSoon")}
-                </span>
               </Button>
               <Button
                 type="button"
@@ -223,9 +257,6 @@ const AuthLoginPage = () => {
                 title={`WhatsApp - ${t("auth.comingSoon")}`}
               >
                 <WhatsAppIcon />
-                <span className="absolute -top-2 -end-1 text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-amber-500 text-white">
-                  {t("auth.comingSoon")}
-                </span>
               </Button>
             </div>
 

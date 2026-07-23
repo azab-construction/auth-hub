@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowUp, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoLight from "@/assets/az-w.png.asset.json";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -24,9 +25,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">
-                <span className="font-heading font-bold text-primary-foreground text-xl">ع</span>
-              </div>
+              <img src={logoLight.url} alt="Alazab" className="w-14 h-14 object-contain drop-shadow-lg" />
               <div>
                 <h3 className="font-heading font-bold text-xl text-white">العزب</h3>
                 <p className="text-xs text-white/40">{t("nav.subtitle")}</p>

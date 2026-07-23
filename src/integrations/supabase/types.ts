@@ -649,6 +649,7 @@ export type Database = {
           client_phone: string | null
           company_id: string | null
           created_at: string
+          created_by: string | null
           description: string | null
           estimated_cost: number | null
           id: string
@@ -668,6 +669,7 @@ export type Database = {
           client_phone?: string | null
           company_id?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           estimated_cost?: number | null
           id?: string
@@ -687,6 +689,7 @@ export type Database = {
           client_phone?: string | null
           company_id?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           estimated_cost?: number | null
           id?: string

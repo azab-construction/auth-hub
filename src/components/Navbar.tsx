@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoDark from "@/assets/az-s.png.asset.json";
+import logoLight from "@/assets/az-w.png.asset.json";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,8 +36,13 @@ const Navbar = () => {
     }`}>
       <div className="container flex items-center justify-between h-[72px]">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-xl bg-primary flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
-            <span className="font-heading font-bold text-primary-foreground text-lg">ع</span>
+          <div className="relative w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <div className="absolute inset-0 rounded-2xl bg-primary/15 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <img
+              src={theme === "dark" ? logoLight.url : logoDark.url}
+              alt="Alazab"
+              className="relative w-12 h-12 object-contain drop-shadow-md"
+            />
           </div>
           <div>
             <h1 className="font-heading font-bold text-foreground text-lg leading-tight">العزب</h1>

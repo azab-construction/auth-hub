@@ -48,7 +48,6 @@ const AccountTypeCards = () => {
       path: "/auth/login",
       gradient: "from-primary/20 to-primary/5",
       iconBg: "bg-primary/15",
-      featured: true,
     },
   ];
 

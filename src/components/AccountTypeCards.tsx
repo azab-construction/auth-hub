@@ -82,14 +82,8 @@ const AccountTypeCards = () => {
           <motion.div
             key={type.title}
             variants={item}
-            className={`group relative bg-card rounded-2xl shadow-card border border-border/50 p-8 flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-3 hover:shadow-card-hover ${type.featured ? 'md:-mt-4 md:mb-4 ring-1 ring-primary/20' : ''}`}
+            className="group relative bg-card rounded-2xl shadow-card border border-border/50 p-8 flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-3 hover:shadow-card-hover"
           >
-            {type.featured && (
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
-                ⭐ الأكثر طلباً
-              </div>
-            )}
-
             <div className={`w-18 h-18 rounded-2xl flex items-center justify-center mb-6 ${type.iconBg} transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg`}>
               <type.icon className="w-9 h-9 text-primary" />
             </div>
@@ -109,11 +103,7 @@ const AccountTypeCards = () => {
             </ul>
 
             <Button
-              className={`w-full mt-auto gap-2 h-12 font-bold rounded-xl transition-all duration-300 ${
-                type.featured
-                  ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg glow-primary'
-                  : 'bg-accent text-accent-foreground hover:bg-accent/90'
-              }`}
+              className="w-full mt-auto gap-2 h-12 font-bold rounded-xl bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300"
               asChild
             >
               <Link to={type.path}>

@@ -116,11 +116,24 @@
 
 @layer utilities {
   .font-heading {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'IBM Plex Sans Arabic', 'Almarai', sans-serif;
   }
 
   .font-body {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Almarai', 'IBM Plex Sans Arabic', sans-serif;
+  }
+
+  .font-numeric {
+    font-family: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+    font-feature-settings: "tnum";
+  }
+
+  .font-hero {
+    font-family: 'Segoe UI', 'IBM Plex Sans Arabic', sans-serif;
   }
 
   .gradient-hero {
